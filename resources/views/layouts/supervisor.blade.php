@@ -3,7 +3,7 @@
 <ul id="nav-color" class="nav navbar-nav">
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Course <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li>{!! Html::link('supervisor/course', 'View All') !!}
+            <li>{!! Html::link('/supervisor/courses', 'View All') !!}
             </li>
             <li>{!! HTML::link('#', 'Add Course') !!}
             </li>
