@@ -36,5 +36,6 @@ class CreateCourseUserTable extends Migration
             $table->dropForeign('course_user_user_id_foreign');
             $table->dropForeign('course_user_course_id_foreign');
         });
+        Schema::drop('course_user');
     }
 }
