@@ -21,3 +21,10 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'as' => 'auth'], functi
     Route::get('register', 'AuthController@getRegister');
     Route::post('register', 'AuthController@postRegister');
 });
+Route::get('/home', function () {
+    if (\Auth::user()->role) {
+        return view('supervisor.home');
+    } else {
+        return view('trainee.home');
+    }
+});
