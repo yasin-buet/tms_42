@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Subject;
-use App\Course;
+use App\Task;
 
-class SubjectsController extends Controller
+class SubjectsTasksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,7 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::orderBy('id')->paginate(\Config::get('paginate.paginate_no'));
-        return view('supervisor.subjects.index', compact('subjects'));
+        //
     }
 
     /**
@@ -27,9 +26,10 @@ class SubjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($subjectId)
     {
-        return view('supervisor.subjects.create');
+        $subject = Subject::find($subjectId);
+        return view('supervisor.tasks.create', compact('subject'));
     }
 
     /**
@@ -38,15 +38,18 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $subjectId)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-        $input = $request->all();
-        $subjectId = Subject::create($input)->id;
-        return redirect()->action('Supervisor\SubjectsController@show', ['subjectId' => $subjectId]);
+        $task = new Task;
+        $task->subject_id = $subjectId;
+        $task->name = $request->input('name');
+        $task->description = $request->input('description');
+        $task->save();
+        return redirect()->action('Supervisor\SubjectsController@show', [$subjectId]);
     }
 
     /**
@@ -57,8 +60,7 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        $subject = Subject::with('tasks')->find($id);
-        return view('supervisor.subjects.show', compact('subject'));
+        //
     }
 
     /**

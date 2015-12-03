@@ -32,4 +32,5 @@ Route::group(['prefix' => 'supervisor', 'namespace' => 'Supervisor', 'middleware
     Route::resource('courses', 'CoursesController');
     Route::resource('subjects', 'SubjectsController');
     Route::resource('users', 'UsersController');
+    Route::resource('subjects.tasks', 'SubjectsTasksController');
 });

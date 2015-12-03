@@ -26,5 +26,6 @@
             @endforeach
         </tbody>
     </table>
+    {!! link_to_route('supervisor.subjects.tasks.create', 'add task', [$subject->id]) !!}
 </div>
 @endsection
