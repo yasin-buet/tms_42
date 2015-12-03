@@ -15,7 +15,7 @@ class DailyReportsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach(range(1, 20) as $index) {
+        foreach (range(1, 20) as $index) {
             $users = DailyReport::create([
                 'user_id' => User::orderByRaw('RAND()')->first()->id,
                 'start_time' => $faker->dateTime,

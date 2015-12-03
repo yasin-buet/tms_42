@@ -48,4 +48,8 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Subject');
     }
+    public function scopeTrainee($query)
+    {
+        return $query->where('role', 0);
+    }
 }

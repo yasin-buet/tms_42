@@ -31,4 +31,5 @@ Route::get('/home', function () {
 Route::group(['prefix' => 'supervisor', 'namespace' => 'Supervisor', 'middleware' => ['auth', 'supervisor']], function() {
     Route::resource('courses', 'CoursesController');
     Route::resource('subjects', 'SubjectsController');
+    Route::resource('users', 'UsersController');
 });
