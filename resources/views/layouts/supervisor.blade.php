@@ -11,7 +11,7 @@
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Subject <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li>{!! HTML::link('#', 'View All') !!}
+            <li>{!! HTML::link('/supervisor/subjects', 'View All') !!}
             </li>
             <li>{!! HTML::link('#', 'Add Subject') !!}
             </li>
