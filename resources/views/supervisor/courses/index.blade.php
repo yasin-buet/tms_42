@@ -1,8 +1,9 @@
 @extends('layouts.supervisor')
 @section('content')
 <div id="div-indent">
+    <h1>Course List </h1>
     @foreach ($courses as $course)
-        <br><br><h1>Course Name: <span class="label label-default">{{ $course->name }}</span></h1>
+        <h1><span class="label label-default">{!! link_to_route('supervisor.courses.show', $course->name, [$course->id]) !!}</span></h1>
     @endforeach
 </div>
 <center>
