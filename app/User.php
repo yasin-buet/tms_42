@@ -52,4 +52,12 @@ class User extends Model implements AuthenticatableContract,
     {
         return $query->where('role', 0);
     }
+    public function scopeSupervisor($query)
+    {
+        return $query->where('role', 1);
+    }
+    public function courses()
+    {
+        return $this->belongsToMany('App\Course');
+    }
 }
