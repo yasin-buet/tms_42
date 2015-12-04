@@ -50,7 +50,8 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $subject = Subject::with('tasks')->find($id);
+        return view('supervisor.subjects.show', compact('subject'));
     }
 
     /**
