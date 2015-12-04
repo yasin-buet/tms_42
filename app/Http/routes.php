@@ -28,3 +28,6 @@ Route::get('/home', function () {
         return view('trainee.home');
     }
 });
+Route::group(['prefix' => 'supervisor', 'namespace' => 'Supervisor', 'middleware' => ['auth', 'supervisor']], function() {
+    Route::resource('courses', 'CoursesController');
+});
