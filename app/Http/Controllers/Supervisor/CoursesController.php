@@ -51,7 +51,8 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Course::with('subjects')->find($id);
+        return view('supervisor.courses.show', compact('course'));
     }
 
     /**
