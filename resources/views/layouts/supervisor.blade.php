@@ -19,7 +19,7 @@
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">trainee <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li>{!! HTML::link('#', 'View All') !!}
+            <li>{!! HTML::linkAction('Supervisor\UsersController@index', 'View All', ['type' => 'trainee']) !!}
             </li>
             <li>{!! HTML::link('#', 'Add trainee To Course') !!}
             </li>
