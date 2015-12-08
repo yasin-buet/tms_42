@@ -33,6 +33,7 @@ Route::group(['prefix' => 'supervisor', 'namespace' => 'Supervisor', 'middleware
     Route::resource('subjects', 'SubjectsController');
     Route::resource('users', 'UsersController');
     Route::resource('subjects.tasks', 'SubjectsTasksController');
+    Route::resource('course.users', 'CourseUsersController');
 });
 Route::group(['prefix' => 'trainee', 'namespace' => 'Trainee', 'middleware' => 'auth'], function() {
     Route::resource('users', 'UsersController');
