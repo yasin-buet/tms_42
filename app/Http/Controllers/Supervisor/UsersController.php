@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Course;
 
 class UsersController extends Controller
 {
@@ -20,6 +21,10 @@ class UsersController extends Controller
         if ($request->input('type') == 'trainee') {
             $users = User::trainee()->get();
             return view('supervisor.users.trainee.index', compact('users'));
+        }
+        if ($request->input('type') == 'supervisor') {
+            $users = User::supervisor()->get();
+            return view('supervisor.users.supervisors.index', compact('users'));
         }
     }
 
@@ -51,8 +56,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {  
+        $supervisor = User::with('courses')->find($id);
+        return view('supervisor.users.supervisors.show', compact('supervisor'));
     }
 
     /**
