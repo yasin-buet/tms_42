@@ -29,8 +29,6 @@
         <ul class="dropdown-menu">
             <li>{!! HTML::linkAction('Supervisor\UsersController@index', 'View All', ['type' => 'supervisor']) !!}
             </li>
-            <li>{!! HTML::link('#', 'Assign Course') !!}
-            </li>
         </ul>
     </li>
     <li id="profile-right" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>

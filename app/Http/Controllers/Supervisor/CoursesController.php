@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Course;
-
+use App\User;
 
 class CoursesController extends Controller
 {
@@ -63,7 +63,9 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        $supervisors = User::Supervisor()->lists('name', 'id');
+        return view('supervisor.courses.edit', compact('course', 'supervisors'));
     }
 
     /**
@@ -75,7 +77,15 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'supervisor_id' => 'required'
+        ]);
+        $input = $request->all();
+        $course->save($input);
+        return redirect()->back();
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $fillable = ['name', 'description', 'supervisor_id'];
     public function subjects()
     {
         return $this->belongsToMany('App\Subject');
