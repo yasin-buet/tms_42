@@ -13,7 +13,7 @@
         <ul class="dropdown-menu">
             <li>{!! HTML::link('/supervisor/subjects', 'View All') !!}
             </li>
-            <li>{!! HTML::link('#', 'Add Subject') !!}
+            <li>{!! HTML::linkAction('Supervisor\SubjectsController@create', 'Add Subject') !!}
             </li>
         </ul>
     </li>
