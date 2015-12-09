@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Course;
 use App\User;
+use App\Subject;
 
 class CoursesController extends Controller
 {
@@ -29,7 +30,8 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        //
+        $subjects = Subject::All();
+        return view('supervisor.courses.create', compact('subjects'));
     }
 
     /**
@@ -40,7 +42,13 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ]);
+        $input = $request->all();
+        Course::create($input)->subjects()->attach($request->input('subjects'));
+        return redirect()->action('Supervisor\CoursesController@index');
     }
 
     /**
