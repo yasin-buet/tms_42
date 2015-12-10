@@ -21,6 +21,8 @@
         <ul class="dropdown-menu">
             <li>{!! HTML::linkAction('Supervisor\UsersController@index', 'View All', ['type' => 'trainee']) !!}
             </li>
+            <li>{!! HTML::link('/supervisor/users/create', 'Create trainee') !!}
+            </li>
             <li>{!! HTML::link('#', 'Add trainee To Course') !!}
             </li>
         </ul>
