@@ -33,7 +33,7 @@
     </li>
     <li id="profile-right" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->name }}<span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li>{!! HTML::link('#', 'Update') !!}
+            <li>{!! HTML::linkAction('Supervisor\UsersController@edit', 'Update', ['supervisorId' => \Auth::user()->id]) !!}
             </li>
             <li>{!! HTML::link('auth/logout', 'Logout') !!}
             </li>

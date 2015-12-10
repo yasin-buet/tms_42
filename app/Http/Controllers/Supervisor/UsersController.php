@@ -67,9 +67,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($userId)
     {
-        //
+        $supervisor = user::find($userId); 
+        $this->authorize('edit', $supervisor);        
+        return view('supervisor.users.supervisors.edit', compact('supervisor'));
     }
 
     /**
@@ -81,7 +83,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255'
+        ]);  
+        $this->authorize('edit', $user);     
+        $user->update($request->all());
+        return redirect('/home');
     }
 
     /**
