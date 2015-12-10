@@ -1,10 +1,10 @@
 <html>
 <head>
     <title>tms_42</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     {!! Html::style('css/stylesheet.css') !!}
+    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! HTML::script('js/jquery.min.js') !!}
+    {!! HTML::script('js/bootstrap.min.js') !!}
 </head>
 <body>
     <div class="row">

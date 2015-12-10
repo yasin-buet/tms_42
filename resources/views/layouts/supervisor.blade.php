@@ -5,7 +5,7 @@
         <ul class="dropdown-menu">
             <li>{!! Html::link('/supervisor/courses', 'View All') !!}
             </li>
-            <li>{!! HTML::link('#', 'Add Course') !!}
+            <li>{!! HTML::link('/supervisor/courses/create', 'Add Course') !!}
             </li>
         </ul>
     </li>
