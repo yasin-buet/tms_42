@@ -53,7 +53,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = User::find($id);
+        return view('trainee.users.show', compact('member'));
     }
 
     /**
