@@ -5,7 +5,7 @@
         <ul class="dropdown-menu">
             <li>{!! Html::link('/trainee/courses', 'View All') !!}
             </li>
-            <li>{!! HTML::link('#', 'Course Members') !!}
+            <li>{!! HTML::linkAction('Trainee\UsersController@index', 'Course Members') !!}
             </li>
         </ul>
     </li>

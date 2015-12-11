@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\CourseUser;
+use App\Course;
 
 class UsersController extends Controller
 {
@@ -17,7 +19,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $course = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
+        $members = $course->users()->where('course_user.is_currently_enrolled', 1)->get();
+        return view('trainee.users.index', compact('members'));
     }
 
     /**
