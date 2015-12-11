@@ -37,4 +37,6 @@ Route::group(['prefix' => 'supervisor', 'namespace' => 'Supervisor', 'middleware
 });
 Route::group(['prefix' => 'trainee', 'namespace' => 'Trainee', 'middleware' => 'auth'], function() {
     Route::resource('users', 'UsersController');
+    Route::resource('courses', 'CoursesController');
+    Route::resource('subjects', 'SubjectsController');
 });

@@ -3,9 +3,15 @@
 <ul class="nav navbar-nav">
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Course <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li>{!! Html::link('#', 'Course Details') !!}
+            <li>{!! Html::link('/trainee/courses', 'View All') !!}
             </li>
             <li>{!! HTML::link('#', 'Course Members') !!}
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Subject <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>{!! HTML::link('#', 'View My Subjects') !!}
             </li>
         </ul>
     </li>
