@@ -17,7 +17,15 @@
     </li>
     <li>{!! HTML::link('#', 'Calender') !!}
     </li>
-    <li>{!! HTML::link('#', 'Report') !!}
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Report <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>
+                {!! HTML::linkAction('Trainee\ReportsController@create', 'Write todays report') !!}
+            </li>
+            <li>
+                {!! HTML::link('#', 'View all') !!}
+            </li>
+        </ul>
     </li>
     <li>{!! HTML::link('#', 'Progress') !!}
     </li>

@@ -39,4 +39,6 @@ Route::group(['prefix' => 'trainee', 'namespace' => 'Trainee', 'middleware' => '
     Route::resource('users', 'UsersController');
     Route::resource('courses', 'CoursesController');
     Route::resource('subjects', 'SubjectsController');
+    Route::resource('reports', 'ReportsController');
 });
+
