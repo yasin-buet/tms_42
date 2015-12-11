@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-xs-12">
             <nav class="navbar navbar-inverse">
-                <ul><a class="navbar-brand" href="#"><img src="/img/logo.png"></a></ul>
+                <ul><a class="navbar-brand" href="/home"><img src="/img/logo.png"></a></ul>
                 <a class="navbar-brand" href="/home">tms_42</a>
                 @yield('menu_left')
                 <div>
