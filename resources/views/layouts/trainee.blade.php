@@ -19,7 +19,7 @@
     </li>
     <li>{!! HTML::link('#', 'Report') !!}
     </li>
-    <li>{!! HTML::link('#', 'Progress') !!}
+    <li>{!! Html::linkAction('Trainee\ProgressController@index', 'Progress') !!}
     </li>
     <li>{!! HTML::link('#', 'History') !!}
     </li>

@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract,
     }
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject');
+        return $this->belongsToMany('App\Subject', 'subject_user');
     }
     public function scopeTrainee($query)
     {
@@ -59,5 +59,9 @@ class User extends Model implements AuthenticatableContract,
     public function courses()
     {
         return $this->belongsToMany('App\Course');
+    }
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Task', 'task_user');
     }
 }
