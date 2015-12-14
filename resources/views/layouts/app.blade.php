@@ -7,23 +7,31 @@
     {!! HTML::script('js/bootstrap.min.js') !!}
 </head>
 <body>
-    <div class="row">
-        <div class="col-xs-12">
-            <nav class="navbar navbar-inverse">
-                <ul><a class="navbar-brand" href="/home"><img src="/img/logo.png"></a></ul>
-                <a class="navbar-brand" href="/home">tms_42</a>
-                @yield('menu_left')
-                <div>
-                    <ul class="nav navbar-nav navbar-right">
-                        @if (Auth::guest())
-                            <li><a href="/auth/register"><i class="fa fa-btn fa-heart"></i>Register</a></li>
-                            <li><a href="/auth/login"><i class="fa fa-btn fa-sign-in"></i>Login</a></li>
-                        @endif
-                    </ul>
-                </div>
-            </nav>
+    <div class="container">
+        <div class="row">
+            @if (Auth::guest())
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="pull-left" href="#"><img src="/img/logo.png"></a>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">tms_42</a></li>
+                            </ul> 
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/auth/register">Register</a></li>
+                                <li><a href="/auth/login">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            @endif
         </div>
-    </div>
-    @yield('content')
+        @yield('menu')
+        <div class="row centered" id="content">
+            @yield('content')
+        </div>
+    </div> 
 </body>
 </html>
