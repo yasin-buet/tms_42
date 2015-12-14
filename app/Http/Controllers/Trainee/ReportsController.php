@@ -18,7 +18,8 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        $reports = \Auth::user()->dailyReports()->get();
+        return view('trainee.reports.index', compact('reports'));
     }
 
     /**

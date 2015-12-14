@@ -29,7 +29,7 @@
                             {!! HTML::linkAction('Trainee\ReportsController@create', 'Write todays report') !!}
                         </li>
                         <li>
-                            {!! HTML::link('#', 'View all') !!}
+                            {!! HTML::linkAction('Trainee\ReportsController@index', 'View all') !!}
                         </li>
                     </ul>
                 </li>
