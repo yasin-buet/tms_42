@@ -33,8 +33,6 @@
                         </li>
                     </ul>
                 </li>
-                <li>{!! HTML::link('#', 'Progress') !!}
-                </li>
                 <li>{!! HTML::linkAction('Trainee\UsersController@index', 'History') !!}
                 </li>
             </ul>

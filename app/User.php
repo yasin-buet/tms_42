@@ -60,4 +60,8 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Course');
     }
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Task', 'task_user');
+    }
 }
