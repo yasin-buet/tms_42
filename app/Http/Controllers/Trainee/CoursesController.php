@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Course;
+use App\SubjectUser;
 
 class CoursesController extends Controller
 {
@@ -51,7 +52,18 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = Course::with('subjects')->find($id);
-        return view('trainee.courses.show', compact('course'));
+        $courseEnrolled = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
+        if ($courseEnrolled->id != $id) {
+            return view('trainee.courses.show', ['course' => $course]);
+        }
+        $subjectsFinished = \Auth::user()->subjects()
+                                ->where('subject_user.course_id', $courseEnrolled->id)
+                                ->where('subject_user.status', 1)->count();
+        $subjectsNotFinished = \Auth::user()->subjects()
+                                    ->where('subject_user.course_id', $courseEnrolled->id)
+                                    ->where('subject_user.status', 0)->count();
+        $courseProgress = ($subjectsFinished/($subjectsFinished + $subjectsNotFinished)) * 100;        
+        return view('trainee.courses.show', ['course' => $course, 'courseProgress' => $courseProgress]);
     }
 
     /**
