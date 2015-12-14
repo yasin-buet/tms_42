@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('menu_left')
+@section('menu')
 <ul id="nav-color" class="nav navbar-nav">
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Course <span class="caret"></span></a>
         <ul class="dropdown-menu">

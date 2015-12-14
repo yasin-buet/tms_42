@@ -19,9 +19,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $course = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
-        $members = $course->users()->where('course_user.is_currently_enrolled', 1)->get();
-        return view('trainee.users.index', compact('members'));
+        $courseOngoing = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
+        $members = $courseOngoing->users()->where('course_user.is_currently_enrolled', 1)->get();
+        $courseFinished = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 0)->get();
+        return view('trainee.users.index', compact('courseOngoing', 'courseFinished', 'members'));
     }
 
     /**
