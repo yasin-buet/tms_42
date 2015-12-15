@@ -17,7 +17,6 @@
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">tms_42</a></li>
                             </ul> 
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/auth/register">Register</a></li>
