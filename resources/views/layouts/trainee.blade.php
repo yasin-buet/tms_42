@@ -21,7 +21,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>{!! HTML::link('#', 'Calender') !!}
+                <li>{!! HTML::linkAction('Trainee\TasksController@index', 'Calendar') !!}
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
