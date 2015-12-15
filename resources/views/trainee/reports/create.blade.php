@@ -1,12 +1,12 @@
 @extends('layouts.trainee')
 @section('content')
-<div id="register" class="container">
-    <div class="col-sm-offset-2 col-sm-8">
-        <div class="panel panel-default">
+<div class="container">
+    <div class="col-sm-offset-1 col-sm-10">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2>Create Report</h2>
             </div>
-            <div class="panel-body">
+            <div class="panel-body text-center">
                 @include('common.errors')
                 {!! Form::open(['action' => 'Trainee\ReportsController@store'], ['class' => 'form-group']) !!}
                     <div class="form-group">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            {!! Form::submit('Submit') !!}
+                            {!! Form::submit('Submit', ['class' => 'btn3d btn btn-lg btn btn-primary active']) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}
