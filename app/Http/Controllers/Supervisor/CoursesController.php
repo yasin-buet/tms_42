@@ -92,7 +92,7 @@ class CoursesController extends Controller
             'supervisor_id' => 'required'
         ]);
         $input = $request->all();
-        $course->save($input);
+        $course->update($input);
         return redirect()->back();
     }
 
