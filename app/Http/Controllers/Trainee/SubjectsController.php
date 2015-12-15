@@ -17,8 +17,8 @@ class SubjectsController extends Controller
     public function index()
     {
         $course = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
-        $subjects = $course->subjects()->with('tasks')->get();
-        return view('trainee.subjects.index', compact('subjects'));
+        $subjects = $course->subjects()->get();
+        return view('trainee.subjects.index', ['subjects' => $subjects, 'course' => $course]);
     }
 
     /**

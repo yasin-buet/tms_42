@@ -11,4 +11,8 @@ class Task extends Model
     {
         return $this->belongsTo('App\Subject');
     }
+    public function users()
+    {
+        return $this->belongsTomany('App\User', 'task_user');
+    }
 }
