@@ -1,6 +1,6 @@
 @extends('layouts.trainee')
 @section('content')
-<h1>Edit Your Profile - {{ $user->name }}</h1>
+<h2>Edit Your Profile - {{ $user->name }}</h2>
     <p class="lead">Edit profile informations below. 
     </p>
     {!! Form::model($user, [
