@@ -69,7 +69,8 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        return view('supervisor.subjects.edit', ['subject' => $subject]);
     }
 
     /**
@@ -81,7 +82,14 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subject = subject::findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $input = $request->all();
+        $subject->update($input);
+        return back();
     }
 
     /**
