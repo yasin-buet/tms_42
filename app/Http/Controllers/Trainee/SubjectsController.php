@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\CourseSubject;
+use App\SubjectUser;
 
 class SubjectsController extends Controller
 {
@@ -17,7 +19,7 @@ class SubjectsController extends Controller
     public function index()
     {
         $course = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
-        $subjects = $course->subjects()->get();
+        $subjects = \Auth::user()->subjects()->whereCourseId($course->id)->get();
         return view('trainee.subjects.index', ['subjects' => $subjects, 'course' => $course]);
     }
 
@@ -73,7 +75,9 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = \Auth::user()->courses()->where('course_user.is_currently_enrolled', 1)->first();
+        SubjectUser::whereSubjectId($id)->whereCourseId($course->id)->whereUserId(\Auth::user()->id)->update(['status' => 1]);
+        return back(); 
     }
 
     /**

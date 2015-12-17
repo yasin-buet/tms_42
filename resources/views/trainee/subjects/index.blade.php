@@ -13,6 +13,11 @@
             </div>
         </div>
         <br>
+        @if ($subject->pivot->status == 0)
+            {!! Form::open(['route'=>['trainee.subjects.update', $subject->id], 'method' => 'PUT']) !!}
+                {!! Form::submit('Finish Subject') !!}
+            {!! Form:: close() !!}
+        @endif
     @endforeach
 </div>
 @endsection
