@@ -15,7 +15,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        {!! link_to_route('supervisor.users.edit', 'edit', [$user->id]) !!}
+                        {!! link_to_route('supervisor.users.edit', 'edit', ['userId' => $user->id, 'type' => 'trainee']) !!}
                     </td>
                 </tr>
             @endforeach
