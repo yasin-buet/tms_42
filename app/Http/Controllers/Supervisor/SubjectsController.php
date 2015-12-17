@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Subject;
 use App\Course;
+use App\CourseSubject;
 
 class SubjectsController extends Controller
 {
@@ -82,6 +83,7 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        CourseSubject::whereSubjectId($id)->whereCourseId($request->course_id)->update(['is_finished' => 1, 'end_date' => date('Y-m-d h:i:sa')]);
         $subject = subject::findOrFail($id);
         $this->validate($request, [
             'name' => 'required',
