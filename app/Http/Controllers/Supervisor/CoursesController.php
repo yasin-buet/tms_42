@@ -9,9 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Course;
 use App\User;
 use App\Subject;
+use App\Repositories\CourseRepository;
 
 class CoursesController extends Controller
 {
+    protected $courses;
+    public function __construct(CourseRepository $courses)
+    {
+        $this->middleware('supervisor');
+        $this->courses = $courses;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +26,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy('id')->paginate(\Config::get('paginate.paginate_no'));
-        return view('supervisor.courses.index', compact('courses'));
+        return view('supervisor.courses.index', ['courses' => $this->courses->allCourseWithPaginate()]);
     }
 
     /**
@@ -30,8 +36,7 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        $subjects = Subject::All();
-        return view('supervisor.courses.create', compact('subjects'));
+        return view('supervisor.courses.create', ['subjects' => $this->courses->allSubjects()]);
     }
 
     /**
@@ -59,8 +64,7 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        $course = Course::with('subjects')->find($id);
-        return view('supervisor.courses.show', compact('course'));
+        return view('supervisor.courses.show', ['course' => $this->courses->courseWithSubjects($id)]);
     }
 
     /**
@@ -71,9 +75,7 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::find($id);
-        $supervisors = User::Supervisor()->lists('name', 'id');
-        return view('supervisor.courses.edit', compact('course', 'supervisors'));
+        return view('supervisor.courses.edit', ['course' =>$this->courses->findCourse($id), 'supervisors' => $this->courses->supervisors()]);
     }
 
     /**
@@ -85,7 +87,7 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Course::findOrFail($id);
+        $course = $this->courses->findCourse($id);
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
@@ -104,7 +106,7 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        Course::destroy($id);
+        $this->courses->destroyCourse($id);
         return redirect()->back();
     }
 }
