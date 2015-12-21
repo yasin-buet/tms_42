@@ -19,8 +19,10 @@
                             <ul class="nav navbar-nav">
                             </ul> 
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/auth/register">Register</a></li>
-                                <li><a href="/auth/login">Login</a></li>
+                                <li><a href="/auth/register">{!! trans('messages.register') !!}</a></li>
+                                <li><a href="/auth/login">{!! trans('messages.login') !!}</a></li>
+                                <li>{!! link_to('/language/bn', 'বাংলা', array('class' => 'btn btn-warning')) !!}</li>
+                                <li>{!! link_to('/language/en', 'English', array('class' => 'btn btn-info')) !!}</li>
                             </ul>
                         </div>
                     </div>
@@ -31,6 +33,21 @@
         <div class="row centered" id="content">
             @yield('content')
         </div>
-    </div> 
+    </div>
+    <div class="footer" id="footer">
+        <div class="navbar-inner">
+            <div class="container text-center">
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="/">© 2015 PHP Team Ambidextrous.</a></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

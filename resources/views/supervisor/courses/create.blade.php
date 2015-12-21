@@ -34,7 +34,7 @@
                     @endforeach
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            {!! Form::submit('Add') !!}
+                            {!! Form::submit('Add', ['class' => 'btn btn-success center-block']) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}

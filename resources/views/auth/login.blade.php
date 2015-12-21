@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            {!! Form::submit('Login') !!}
+                            {!! Form::submit(trans('messages.login')) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}
