@@ -9,7 +9,7 @@ class Course extends Model
     protected $fillable = ['name', 'description', 'supervisor_id'];
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject');
+        return $this->belongsToMany('App\Subject')->withPivot('is_finished');
     }
     public function supervisor()
     {

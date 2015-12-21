@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.supervisor')
 @section('content')
 <div id="register" class="container">
     <div class="col-sm-offset-2 col-sm-8">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            {!! Form::submit('Create') !!}
+                            {!! Form::submit('Create', ['class' => 'btn btn-success']) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}

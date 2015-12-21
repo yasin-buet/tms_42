@@ -10,9 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/language/{language}', function ($language) {
+    Session::put('language', $language);
+    return redirect('/auth/login');
 });
 Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'as' => 'auth'], function() {
     Route::get('login', 'AuthController@getLogin');

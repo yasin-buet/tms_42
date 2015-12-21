@@ -44,9 +44,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>{!! HTML::linkAction('Supervisor\UsersController@edit', 'Update', ['supervisorId' => \Auth::user()->id]) !!}
+                        <li>{!! HTML::linkAction('Supervisor\UsersController@edit', trans('messages.update'), ['supervisorId' => \Auth::user()->id]) !!}
                         </li>
-                        <li>{!! HTML::link('auth/logout', 'Logout') !!}
+                        <li>{!! HTML::link('auth/logout', trans('messages.logout')) !!}
                         </li>
                     </ul>
                 </li>
