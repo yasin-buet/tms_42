@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Subject;
-use App\Course;
-use App\CourseSubject;
+use App\Repositories\SubjectRepository;
+use App\Repositories\CourseSubjectRepository;
 
 class SubjectsController extends Controller
 {
@@ -17,9 +16,17 @@ class SubjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $subjects;
+    protected $courseSubjectRepository;
+    public function __construct(SubjectRepository $subjects, CourseSubjectRepository $courseSubjectRepository)
+    {
+        $this->middleware('supervisor');
+        $this->subjects = $subjects;
+        $this->courseSubjectRepository = $courseSubjectRepository;
+    }
     public function index()
     {
-        $subjects = Subject::orderBy('id')->paginate(\Config::get('paginate.paginate_no'));
+        $subjects = $this->subjects->allSubjectsWithPaginate();
         return view('supervisor.subjects.index', compact('subjects'));
     }
 
@@ -46,7 +53,7 @@ class SubjectsController extends Controller
             'description' => 'required',
         ]);
         $input = $request->all();
-        $subjectId = Subject::create($input)->id;
+        $subjectId = $this->subjects->createSubject($input);
         return redirect()->action('Supervisor\SubjectsController@show', ['subjectId' => $subjectId]);
     }
 
@@ -58,7 +65,7 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        $subject = Subject::with('tasks')->find($id);
+        $subject = $this->subjects->subjectWithTasks($id);
         return view('supervisor.subjects.show', compact('subject'));
     }
 
@@ -70,7 +77,7 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        $subject = Subject::findOrFail($id);
+        $subject = $this->subjects->findSubject($id);
         return view('supervisor.subjects.edit', ['subject' => $subject]);
     }
 
@@ -83,8 +90,8 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        CourseSubject::whereSubjectId($id)->whereCourseId($request->course_id)->update(['is_finished' => 1, 'end_date' => date('Y-m-d h:i:sa')]);
-        $subject = subject::findOrFail($id);
+        $this->courseSubjectRepository->updateByCourseIdAndSubjectId($id, $request->course_id, ['is_finished' => 1, 'end_date' => date('Y-m-d H:i:s')]);
+        $subject = $this->subjects->findSubject($id);
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
