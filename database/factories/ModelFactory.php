@@ -19,3 +19,22 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->define(App\Course::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->text,
+    ];
+});
+$factory->define(App\Subject::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->text,
+    ];
+});
+$factory->define(App\CourseSubject::class, function (Faker\Generator $faker) {
+    return [
+        'start_date' => $faker->dateTimeBetween('+1 month', '+3 month'),
+        'end_date' => $faker->dateTimeBetween('+6 month', '+9 month'),
+        'is_finished' => rand(0, 1),
+    ];
+});
