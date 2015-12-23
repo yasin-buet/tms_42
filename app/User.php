@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -22,6 +23,11 @@ class User extends Model implements AuthenticatableContract,
      * @var string
      */
     protected $table = 'users';
+    private $errors;
+    private $rules = [
+        'name' => 'required|unique:users|max:255',
+        'email' => 'required|unique:users',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -63,5 +69,18 @@ class User extends Model implements AuthenticatableContract,
     public function tasks()
     {
         return $this->belongsToMany('App\Task', 'task_user');
+    }
+    public function validate($data)
+    {
+        $validator = Validator::make($data, $this->rules);
+        if ($validator->fails()) {
+            $this->errors = $validator->messages();
+            return false;
+        }
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
     }
 }
