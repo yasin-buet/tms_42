@@ -48,19 +48,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users',
-        ]);
         $input = $request->all();
         $plainPassword = str_random(10);
         $input['password'] = bcrypt($plainPassword);
-        $user = User::create($input);
-        Mail::send('emails.confirmation', ['user' => $user, 'plainPassword' => $plainPassword], function ($message) use ($user, $plainPassword) {
-            $message->from(Config::get('global.defaultMail'), Config::get('global.appName'));
-            $message->to($user->email, $user->name)->subject('Account created!');
-        });
-        return redirect()->action('Supervisor\UsersController@index', ['type' => 'trainee']);
+        $user = new User();
+        if ($user->validate($input)) {
+            $user = User::create($input);
+            Mail::send('emails.confirmation', ['user' => $user, 'plainPassword' => $plainPassword], function ($message) use ($user, $plainPassword) {
+                $message->from(Config::get('global.defaultMail'), Config::get('global.appName'));
+                $message->to($user->email, $user->name)->subject('Account created!');
+            });
+            return redirect()->action('Supervisor\UsersController@index', ['type' => 'trainee']);
+        } else {
+            return redirect()->back()->withErrors($user->errors());
+        } 
     }
 
     /**
