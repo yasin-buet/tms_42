@@ -45,4 +45,8 @@ Route::group(['prefix' => 'trainee', 'namespace' => 'Trainee', 'middleware' => '
     Route::resource('reports', 'ReportsController');
     Route::resource('tasks', 'TasksController');
 });
-
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+Route::get('home', array('as' => 'home', 'uses' => function(){
+  return view('home');
+}));

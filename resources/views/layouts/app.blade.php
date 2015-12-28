@@ -17,10 +17,11 @@
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
-                            </ul> 
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/auth/register">{!! trans('messages.register') !!}</a></li>
                                 <li><a href="/auth/login">{!! trans('messages.login') !!}</a></li>
+                                <li><a class="btn btn-info" href="auth/facebook" role="button">Login Using Facebook</a></li>
                                 <li>{!! link_to('/language/bn', 'বাংলা', array('class' => 'btn btn-warning')) !!}</li>
                                 <li>{!! link_to('/language/en', 'English', array('class' => 'btn btn-info')) !!}</li>
                             </ul>
