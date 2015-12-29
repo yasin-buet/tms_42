@@ -45,4 +45,9 @@ Route::group(['prefix' => 'trainee', 'namespace' => 'Trainee', 'middleware' => '
     Route::resource('reports', 'ReportsController');
     Route::resource('tasks', 'TasksController');
 });
+Route::post('/', function () {
+    $token = Input::get('stripeToken');
+    $user = App\User::find(1);
+    $user->subscription('yearly')->create($token);
+    }); 
 
