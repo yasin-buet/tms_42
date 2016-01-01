@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Course;
 use App\SubjectUser;
+use GrahamCampbell\Dropbox\Facades\Dropbox;
 
 class CoursesController extends Controller
 {
@@ -18,6 +19,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
+        Dropbox::createFolder('/foo');
         $courses = Course::orderBy('id')->paginate(\Config::get('paginate.paginate_no'));
         return view('trainee.courses.index', compact('courses'));
     }
